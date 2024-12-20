@@ -1,0 +1,46 @@
+sudo apt install postgresql
+
+sudo su postgres
+psql
+
+CREATE DATABASE textdb;
+CREATE USER user WITH PASSWORD 'pass';
+GRANT ALL PRIVILEGES ON DATABASE textdb to user;
+
+exit
+
+
+psql -U user textdb
+
+CREATE TABLE texts (
+id SERIAL PRIMARY KEY,
+content TEXT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+source ~/.bashrc 
+nvm install v20
+
+
+
+
+mkdir add_note
+cd add_note/
+mkdir text-app
+cd text-app/
+npm init -y
+npm install express pg cors
+cd ..
+npx create-react-app client
+cd client/
+npm install axios web-vitals
+# update client/src/App.js
+npm start
+
+#in another shell
+cd ~/add_note/text-app/
+# add server.js file here
+node server.js 
